@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Jul 19 09:28:23 2017
+Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+Revision Name : blackjack
+Top-level Entity Name : blackjack
+Family : Cyclone IV E
+Total logic elements : 217
+    Total combinational functions : 215
+    Dedicated logic registers : 22
+Total registers : 22
+Total pins : 89
+Total virtual pins : 0
+Total memory bits : 128
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

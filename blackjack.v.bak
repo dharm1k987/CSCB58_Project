@@ -1,0 +1,338 @@
+module blackjack(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, CLOCK_50);
+    input [17:0] SW;
+    input [3:0] KEY;
+	input CLOCK_50;
+
+    output [17:0] LEDR;
+    output [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6;
+	 
+	 
+	 
+
+// push to get value
+assign clock0 = ~KEY[2];
+assign clock1 = ~KEY[1];
+assign reset = SW[17];
+assign enable = SW[16];
+
+// stores mode
+reg [0:0] mode;
+
+reg [7:0] p1_score = 8'b00000000;
+reg [7:0] p2_score = 8'b00000000;
+   
+reg [3:0] p1_first4 = 4'b0000;
+reg [3:0] p1_last4 = 4'b0000;
+reg [7:0] val = 8'b0000000;
+
+wire [4:0] lfsr1_out;
+wire [4:0] lfsr2_out;
+
+wire p1_stop, p2_stop;
+reg p1_stop_reg, p2_stop_reg;
+assign p1_stop = SW[2];
+assign p2_stop = SW[1];
+
+
+lfsr one(.out(lfsr1_out), .clk(clock0), .rst(reset));
+//lfsr two(.out(lfsr2_out), .clk(clock1), .rst(reset));
+// selects mode
+   always@(SW[0])
+	
+	begin
+			
+			if (SW[0])
+				begin
+				mode = 1'b1;
+		
+				end
+				
+			else
+				begin
+				mode = 1'b0;
+		
+				end
+  
+    end    
+    
+// 1p/comp clock
+always @(posedge clock0 or negedge reset or posedge clock1)
+    begin
+	 
+		if (~reset) begin
+			p1_score <= 8'b00000000;
+		end else if (enable) begin
+			// firstly check if my score >21, then I want to stop
+			if (p1_score > 8'b000b00010101)
+				begin
+				p1_stop_reg <= 1'b1;
+				end
+			//1p AI
+			//
+			if (mode)
+				begin
+					//check if p2 is over and I'm under
+					if (p2_score > 8'b00010101 && p1_score <= 8'b00010101)
+						begin
+							p1_stop_reg <= 1'b1;
+						end
+					//else if my score >= 17
+					else if (p1_score >= 8'b00010001 && p1_score >= p2_score)
+						begin
+						// then I want to stop, I don't care about p1_score
+						p1_stop_reg <= 1'b1;
+						end
+					// else if p2 has stopped, and our score > p2_score
+					else if ((p2_stop_reg || p2_stop) && p1_score > p2_score)
+						begin
+						p1_stop_reg <= 1'b1;
+						end
+					// else I just want to roll
+					else
+						begin
+						if (p1_stop_reg || p1_stop)
+							begin
+							p1_score <= p1_score + 0;
+							end
+						else
+							begin
+							p1_score <= p1_score + (((p1_score + lfsr1_out[3:0]) * 2) % 5) + 1;
+							end
+						end
+				end
+			// otherwise 2p
+			else
+				begin
+						if (p1_stop_reg || p1_stop)
+							begin
+							p1_score <= p1_score + 0;
+							end
+						else
+							begin
+							p1_score <= p1_score + (((p1_score + lfsr1_out[3:0]) * 2) % 5) + 1;
+							end
+						end
+				end
+		end
+
+				
+
+// Stores player 2’s score and resets it when SW[17] is turned on
+always @(posedge clock1 or negedge reset)
+    begin
+	 
+		if (~reset) begin
+			p2_score <= 8'b00000000;
+		end else if (enable) begin
+		
+			// firstly check if my score >21, then I want to stop
+			if (p2_score > 8'b000b00010101)
+				begin
+				p2_stop_reg <= 1'b1;
+				end
+			
+						if (p2_stop_reg || p2_stop)
+							begin
+							p2_score <= p2_score + 0;
+							end
+						else
+							begin
+							p2_score <= p2_score + (((p1_score + lfsr1_out[3:0]) * 2) % 5) + 1;
+							end
+						end
+		end
+				
+
+	 
+wire out_p1, out_p2;
+
+
+
+check_winner(.score1(p1_score), .score2(p2_score), 
+						.p1_stop(p1_stop_reg), .p2_stop(p2_stop_reg), .out_p1(out_p1), .out_p2(out_p2));
+						
+assign LEDR[2] = p1_stop | p1_stop_reg;
+assign LEDR[1] = p2_stop | p2_stop_reg;
+	
+assign LEDR[14] = out_p1;
+assign LEDR[13] = out_p2;
+
+
+// Displays both player 1 and player 2’s scores
+ 
+
+		
+
+
+hex_decoder h1(.hex_digit(p1_score[7:4]), .segments(HEX3));
+hex_decoder h0(.hex_digit(p1_score[3:0]), .segments(HEX2));
+
+hex_decoder h3(.hex_digit(p2_score[7:4]), .segments(HEX1));
+hex_decoder h2(.hex_digit(p2_score[3:0]), .segments(HEX0));
+
+//lfsr one(.out(lfsr1_out), .clk(~KEY[3]), .rst(reset));
+
+  // hex_decoder h5(.hex_digit(lfsr1_out[3:0]), .segments(HEX6)); 
+endmodule
+
+
+
+module check_winner(score1, score2, p1_stop, p2_stop, out_p1, out_p2);
+	input [7:0] score1, score2;
+	input p1_stop, p2_stop;
+	output reg [0:0] out_p1; // if p1 wins
+	output reg [0:0] out_p2; // if p2 wins
+	
+	wire score1_valid = (score1 <= 8'b00010101);
+	wire score2_valid = (score2 <= 8'b00010101);
+	
+	always @ (*)
+		begin
+		// if both stopped
+		if (p1_stop && p2_stop)
+			begin
+			if ((score1_valid && score2_valid) && (score1 > score2)) begin
+				out_p1 <= 1'b1;
+
+			end
+			
+			if ((score1_valid && score2_valid) && (score2 > score1)) begin
+				out_p2 <= 1'b1;
+
+			end
+			
+			if (score1==score2)
+				begin
+				out_p1 <= 1'b1;
+				out_p2 <= 1'b1;
+				end
+			
+			end
+			
+		// if only p1 stopped
+		if (p1_stop) begin
+			// p1 stop, p2 is still playing
+			
+			if (~score2_valid && score1_valid) begin
+				out_p1 <= 1'b1;
+				
+				end
+				
+		end
+			
+			
+		// if only p2 stopped	
+		if (p2_stop) begin
+			
+			if (~score1_valid && score2_valid) begin
+				out_p2 <= 1'b1;
+				end
+				
+			end
+		
+		// otherwise
+		if (~p1_stop && ~p2_stop)
+		
+			begin
+			// if score1 = 21 p1 win
+			if (score1==8'b00010101)
+				begin
+				out_p1 <= 1'b1;
+				end
+			// else if score1 > 21, and score2 <= 21, p2 wins
+			else if (score1>8'b00010101 && score2<=8'b00010101)
+				begin
+				out_p2 <= 1'b1;
+				end
+				
+			// if score2 = 21, p2 win
+			if (score2==8'b00010101)
+				begin
+				out_p2 <= 1'b1;
+				end
+			// else if p2 > 21 and score1 <= 21, p1 wins
+			else if (score2>8'b00010101 && score1<=8'b00010101)
+				begin
+				out_p1 <= 1'b1;
+				end
+				
+			// else, we are still playing
+			else
+				begin
+			out_p1 <= 1'b0;
+			out_p2 <= 1'b0;
+				end
+			end
+			
+
+		end
+		
+endmodule
+
+
+
+module hex_decoder(hex_digit, segments);
+    input [3:0] hex_digit;
+    output reg [6:0] segments;
+   
+    always @(*)
+        case (hex_digit)
+            4'h0: segments = 7'b100_0000;
+            4'h1: segments = 7'b111_1001;
+            4'h2: segments = 7'b010_0100;
+            4'h3: segments = 7'b011_0000;
+            4'h4: segments = 7'b001_1001;
+            4'h5: segments = 7'b001_0010;
+            4'h6: segments = 7'b000_0010;
+            4'h7: segments = 7'b111_1000;
+            4'h8: segments = 7'b000_0000;
+            4'h9: segments = 7'b001_1000;
+            4'hA: segments = 7'b000_1000;
+            4'hB: segments = 7'b000_0011;
+            4'hC: segments = 7'b100_0110;
+            4'hD: segments = 7'b010_0001;
+            4'hE: segments = 7'b000_0110;
+            4'hF: segments = 7'b000_1110;   
+            default: segments = 7'h7f;
+        endcase
+endmodule
+
+
+/*
+
+* Classifying user input to decide which mode they want to play --- Done
+* Design the 2P mode in this lab only  --- In Progress
+* Be able to click keys and update player values randomly (and display on HEX), no winner checking yet ---Mostly Done but just have to add random functionality
+* Implement reset switch that sets everything back -- Done
+
+*/
+
+module lfsr (out, clk, rst);
+
+  output reg[4:0] out;
+  input clk, rst;
+
+  wire feedback = out[4] ^ out[1];
+
+always @(posedge clk or negedge rst)
+  begin
+    if (~rst)
+      out <= 4'h0;
+    else begin
+      out <= {out[3:0],feedback};
+		if (out[3:0]>4'b1110)
+			begin
+			out <= 5'b01101;
+			end
+
+			
+		if (out==5'b00000)
+			begin
+			out <= 5'b00001;
+			end
+		end
+  end
+endmodule
+
+
+

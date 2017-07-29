@@ -1,0 +1,634 @@
+Analysis & Synthesis report for blackjack
+Wed Jul 19 09:28:23 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. User-Specified and Inferred Latches
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Source assignments for ram32x4:r0|altsyncram:altsyncram_component|altsyncram_83g1:auto_generated
+ 13. Parameter Settings for User Entity Instance: ram32x4:r0|altsyncram:altsyncram_component
+ 14. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 15. altsyncram Parameter Settings by Entity Instance
+ 16. Port Connectivity Checks: "hex_decoder:h5"
+ 17. Port Connectivity Checks: "lfsr:one"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Jul 19 09:28:23 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; blackjack                                   ;
+; Top-level Entity Name              ; blackjack                                   ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 217                                         ;
+;     Total combinational functions  ; 215                                         ;
+;     Dedicated logic registers      ; 22                                          ;
+; Total registers                    ; 22                                          ;
+; Total pins                         ; 89                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 128                                         ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; blackjack          ; blackjack          ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; OpenCore Plus hardware evaluation                                          ; Enable             ; Enable             ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; blackjack.v                      ; yes             ; User Verilog HDL File        ; C:/Users/Dharmik/Dropbox/blackjack/blackjack.v                               ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal170.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/aglobal170.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_83g1.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/altsyncram_83g1.tdf                    ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/lpm_divide.tdf        ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/abs_divider.inc       ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/sign_div_unsign.inc   ;         ;
+; db/lpm_divide_uam.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/lpm_divide_uam.tdf                     ;         ;
+; db/sign_div_unsign_jlh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/sign_div_unsign_jlh.tdf                ;         ;
+; db/alt_u_div_q6f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/alt_u_div_q6f.tdf                      ;         ;
+; db/add_sub_7pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/add_sub_7pc.tdf                        ;         ;
+; db/add_sub_8pc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Dharmik/Dropbox/blackjack/db/add_sub_8pc.tdf                        ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 217          ;
+;                                             ;              ;
+; Total combinational functions               ; 215          ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 86           ;
+;     -- 3 input functions                    ; 61           ;
+;     -- <=2 input functions                  ; 68           ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 149          ;
+;     -- arithmetic mode                      ; 66           ;
+;                                             ;              ;
+; Total registers                             ; 22           ;
+;     -- Dedicated logic registers            ; 22           ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 89           ;
+; Total memory bits                           ; 128          ;
+;                                             ;              ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; SW[17]~input ;
+; Maximum fan-out                             ; 22           ;
+; Total fan-out                               ; 885          ;
+; Average fan-out                             ; 2.11         ;
++---------------------------------------------+--------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                    ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                        ; Entity Name         ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; |blackjack                                ; 215 (67)            ; 22 (17)                   ; 128         ; 0            ; 0       ; 0         ; 89   ; 0            ; |blackjack                                                                                                 ; blackjack           ; work         ;
+;    |check_winner:comb_218|                ; 26 (26)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|check_winner:comb_218                                                                           ; check_winner        ; work         ;
+;    |hex_decoder:h0|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|hex_decoder:h0                                                                                  ; hex_decoder         ; work         ;
+;    |hex_decoder:h1|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|hex_decoder:h1                                                                                  ; hex_decoder         ; work         ;
+;    |hex_decoder:h2|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|hex_decoder:h2                                                                                  ; hex_decoder         ; work         ;
+;    |hex_decoder:h3|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|hex_decoder:h3                                                                                  ; hex_decoder         ; work         ;
+;    |hex_decoder:h6|                       ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|hex_decoder:h6                                                                                  ; hex_decoder         ; work         ;
+;    |lfsr:one|                             ; 5 (5)               ; 5 (5)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lfsr:one                                                                                        ; lfsr                ; work         ;
+;    |lpm_divide:Mod0|                      ; 82 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lpm_divide:Mod0                                                                                 ; lpm_divide          ; work         ;
+;       |lpm_divide_uam:auto_generated|     ; 82 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lpm_divide:Mod0|lpm_divide_uam:auto_generated                                                   ; lpm_divide_uam      ; work         ;
+;          |sign_div_unsign_jlh:divider|    ; 82 (0)              ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lpm_divide:Mod0|lpm_divide_uam:auto_generated|sign_div_unsign_jlh:divider                       ; sign_div_unsign_jlh ; work         ;
+;             |alt_u_div_q6f:divider|       ; 82 (82)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|lpm_divide:Mod0|lpm_divide_uam:auto_generated|sign_div_unsign_jlh:divider|alt_u_div_q6f:divider ; alt_u_div_q6f       ; work         ;
+;    |ram32x4:r0|                           ; 0 (0)               ; 0 (0)                     ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|ram32x4:r0                                                                                      ; ram32x4             ; work         ;
+;       |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|ram32x4:r0|altsyncram:altsyncram_component                                                      ; altsyncram          ; work         ;
+;          |altsyncram_83g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |blackjack|ram32x4:r0|altsyncram:altsyncram_component|altsyncram_83g1:auto_generated                       ; altsyncram_83g1     ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                    ;
++--------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                 ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++--------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+------+
+; ram32x4:r0|altsyncram:altsyncram_component|altsyncram_83g1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 32           ; 4            ; --           ; --           ; 128  ; None ;
++--------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                           ;
++----------------------------------------------------+---------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal             ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------------------+------------------------+
+; check_winner:comb_218|out_p2[0]                    ; check_winner:comb_218|out_p2[0] ; yes                    ;
+; check_winner:comb_218|out_p1[0]                    ; check_winner:comb_218|out_p1[0] ; yes                    ;
+; highscore[0]                                       ; highscore[0]                    ; yes                    ;
+; highscore[1]                                       ; highscore[0]                    ; yes                    ;
+; highscore[2]                                       ; highscore[0]                    ; yes                    ;
+; highscore[3]                                       ; highscore[0]                    ; yes                    ;
+; Number of user-specified and inferred latches = 6  ;                                 ;                        ;
++----------------------------------------------------+---------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 22    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 22    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 16    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |blackjack|p1_score[3]     ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |blackjack|lfsr:one|out[3] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Source assignments for ram32x4:r0|altsyncram:altsyncram_component|altsyncram_83g1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------+
+; Assignment                      ; Value              ; From ; To                                 ;
++---------------------------------+--------------------+------+------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                  ;
++---------------------------------+--------------------+------+------------------------------------+
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram32x4:r0|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------+
+; Parameter Name                     ; Value                ; Type                        ;
++------------------------------------+----------------------+-----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                     ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE              ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                     ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                     ;
+; WIDTH_A                            ; 4                    ; Signed Integer              ;
+; WIDTHAD_A                          ; 5                    ; Signed Integer              ;
+; NUMWORDS_A                         ; 32                   ; Signed Integer              ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                     ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                     ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                     ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                     ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                     ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                     ;
+; WIDTH_B                            ; 1                    ; Untyped                     ;
+; WIDTHAD_B                          ; 1                    ; Untyped                     ;
+; NUMWORDS_B                         ; 1                    ; Untyped                     ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                     ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                     ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                     ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                     ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                     ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                     ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                     ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                     ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer              ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                     ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                     ;
+; BYTE_SIZE                          ; 8                    ; Untyped                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
+; INIT_FILE                          ; UNUSED               ; Untyped                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                     ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                     ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                     ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                     ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                     ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                     ;
+; CBXI_PARAMETER                     ; altsyncram_83g1      ; Untyped                     ;
++------------------------------------+----------------------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                ;
+; LPM_WIDTHD             ; 3              ; Untyped                ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_uam ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                       ;
++-------------------------------------------+--------------------------------------------+
+; Name                                      ; Value                                      ;
++-------------------------------------------+--------------------------------------------+
+; Number of entity instances                ; 1                                          ;
+; Entity Instance                           ; ram32x4:r0|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                ;
+;     -- WIDTH_A                            ; 4                                          ;
+;     -- NUMWORDS_A                         ; 32                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                               ;
+;     -- WIDTH_B                            ; 1                                          ;
+;     -- NUMWORDS_B                         ; 1                                          ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                     ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                               ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                       ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                  ;
++-------------------------------------------+--------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "hex_decoder:h5"        ;
++-----------------+-------+----------+--------------+
+; Port            ; Type  ; Severity ; Details      ;
++-----------------+-------+----------+--------------+
+; hex_digit[3..1] ; Input ; Info     ; Stuck at GND ;
++-----------------+-------+----------+--------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lfsr:one"                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; out[4] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 89                          ;
+; cycloneiii_ff         ; 22                          ;
+;     CLR               ; 6                           ;
+;     ENA CLR           ; 16                          ;
+; cycloneiii_lcell_comb ; 222                         ;
+;     arith             ; 66                          ;
+;         2 data inputs ; 21                          ;
+;         3 data inputs ; 45                          ;
+;     normal            ; 156                         ;
+;         0 data inputs ; 11                          ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 36                          ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 86                          ;
+; cycloneiii_ram_block  ; 4                           ;
+;                       ;                             ;
+; Max LUT depth         ; 21.60                       ;
+; Average LUT depth     ; 12.35                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
+    Info: Processing started: Wed Jul 19 09:28:12 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off blackjack -c blackjack
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 5 design units, including 5 entities, in source file blackjack.v
+    Info (12023): Found entity 1: blackjack File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 1
+    Info (12023): Found entity 2: check_winner File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 248
+    Info (12023): Found entity 3: hex_decoder File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 348
+    Info (12023): Found entity 4: lfsr File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 384
+    Info (12023): Found entity 5: ram32x4 File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 414
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.v(12): created implicit net for "clock0" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 12
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.v(13): created implicit net for "clock1" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 13
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.v(14): created implicit net for "load_hs" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 14
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.v(15): created implicit net for "reset" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 15
+Warning (10236): Verilog HDL Implicit Net warning at blackjack.v(16): created implicit net for "enable" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 16
+Critical Warning (10846): Verilog HDL Instantiation warning at blackjack.v(206): instance has no name File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 206
+Info (12127): Elaborating entity "blackjack" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at blackjack.v(24): object "p1_first4" assigned a value but never read File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 24
+Warning (10036): Verilog HDL or VHDL warning at blackjack.v(25): object "p1_last4" assigned a value but never read File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 25
+Warning (10036): Verilog HDL or VHDL warning at blackjack.v(26): object "val" assigned a value but never read File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 26
+Warning (10230): Verilog HDL assignment warning at blackjack.v(108): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 108
+Warning (10230): Verilog HDL assignment warning at blackjack.v(113): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 113
+Warning (10230): Verilog HDL assignment warning at blackjack.v(123): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 123
+Warning (10230): Verilog HDL assignment warning at blackjack.v(128): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 128
+Warning (10230): Verilog HDL assignment warning at blackjack.v(155): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 155
+Warning (10230): Verilog HDL assignment warning at blackjack.v(160): truncated value with size 32 to match size of target (8) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 160
+Warning (10240): Verilog HDL Always Construct warning at blackjack.v(137): inferring latch(es) for variable "p2_stop_reg", which holds its previous value in one or more paths through the always construct File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 137
+Warning (10230): Verilog HDL assignment warning at blackjack.v(170): truncated value with size 8 to match size of target (5) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 170
+Warning (10230): Verilog HDL assignment warning at blackjack.v(176): truncated value with size 8 to match size of target (5) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 176
+Warning (10240): Verilog HDL Always Construct warning at blackjack.v(168): inferring latch(es) for variable "highscore", which holds its previous value in one or more paths through the always construct File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Warning (10034): Output port "LEDR[17..15]" at blackjack.v(5) has no driver File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+Warning (10034): Output port "LEDR[12..3]" at blackjack.v(5) has no driver File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+Warning (10034): Output port "LEDR[0]" at blackjack.v(5) has no driver File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+Warning (10034): Output port "HEX4" at blackjack.v(6) has no driver File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+Info (10041): Inferred latch for "highscore[0]" at blackjack.v(168) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Info (10041): Inferred latch for "highscore[1]" at blackjack.v(168) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Info (10041): Inferred latch for "highscore[2]" at blackjack.v(168) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Info (10041): Inferred latch for "highscore[3]" at blackjack.v(168) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Info (10041): Inferred latch for "highscore[4]" at blackjack.v(168) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+Info (10041): Inferred latch for "p2_stop_reg" at blackjack.v(137) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 137
+Info (12128): Elaborating entity "lfsr" for hierarchy "lfsr:one" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 41
+Info (12128): Elaborating entity "check_winner" for hierarchy "check_winner:comb_218" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 206
+Warning (10240): Verilog HDL Always Construct warning at blackjack.v(260): inferring latch(es) for variable "out_p1", which holds its previous value in one or more paths through the always construct File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+Warning (10240): Verilog HDL Always Construct warning at blackjack.v(260): inferring latch(es) for variable "out_p2", which holds its previous value in one or more paths through the always construct File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+Info (10041): Inferred latch for "out_p2[0]" at blackjack.v(260) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+Info (10041): Inferred latch for "out_p1[0]" at blackjack.v(260) File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+Info (12128): Elaborating entity "hex_decoder" for hierarchy "hex_decoder:h1" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 221
+Info (12128): Elaborating entity "ram32x4" for hierarchy "ram32x4:r0" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 238
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram32x4:r0|altsyncram:altsyncram_component" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 460
+Info (12130): Elaborated megafunction instantiation "ram32x4:r0|altsyncram:altsyncram_component" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 460
+Info (12133): Instantiated megafunction "ram32x4:r0|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 460
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "32"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "5"
+    Info (12134): Parameter "width_a" = "4"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_83g1.tdf
+    Info (12023): Found entity 1: altsyncram_83g1 File: C:/Users/Dharmik/Dropbox/blackjack/db/altsyncram_83g1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_83g1" for hierarchy "ram32x4:r0|altsyncram:altsyncram_component|altsyncram_83g1:auto_generated" File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Warning (12020): Port "data_a" on the entity instantiation of "altsyncram_component" is connected to a signal of width 5. The formal width of the signal in the module is 4.  The extra bits will be ignored. File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 460
+Warning (12030): Port "q_a" on the entity instantiation of "altsyncram_component" is connected to a signal of width 5. The formal width of the signal in the module is 4.  The extra bits will be left dangling without any fan-out logic. File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 460
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 128
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 128
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 128
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "3"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_uam.tdf
+    Info (12023): Found entity 1: lpm_divide_uam File: C:/Users/Dharmik/Dropbox/blackjack/db/lpm_divide_uam.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_jlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_jlh File: C:/Users/Dharmik/Dropbox/blackjack/db/sign_div_unsign_jlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_q6f.tdf
+    Info (12023): Found entity 1: alt_u_div_q6f File: C:/Users/Dharmik/Dropbox/blackjack/db/alt_u_div_q6f.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7pc.tdf
+    Info (12023): Found entity 1: add_sub_7pc File: C:/Users/Dharmik/Dropbox/blackjack/db/add_sub_7pc.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8pc.tdf
+    Info (12023): Found entity 1: add_sub_8pc File: C:/Users/Dharmik/Dropbox/blackjack/db/add_sub_8pc.tdf Line: 23
+Warning (13012): Latch check_winner:comb_218|out_p2[0] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[1] File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+Warning (13012): Latch check_winner:comb_218|out_p1[0] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 260
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal p1_stop_reg File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 32
+Warning (13012): Latch highscore[0] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[1] File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+Warning (13012): Latch highscore[1] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[1] File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+Warning (13012): Latch highscore[2] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[1] File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+Warning (13012): Latch highscore[3] has unsafe behavior File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 168
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal p2_score[3] File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 143
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[10]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[11]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[12]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[15]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[16]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "LEDR[17]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 5
+    Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[3]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[5]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX4[6]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 6
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 8 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[10]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[11]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[12]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[13]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[14]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 2
+    Warning (15610): No output dependent on input pin "KEY[0]" File: C:/Users/Dharmik/Dropbox/blackjack/blackjack.v Line: 3
+Info (21057): Implemented 310 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 22 input pins
+    Info (21059): Implemented 67 output pins
+    Info (21061): Implemented 217 logic cells
+    Info (21064): Implemented 4 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 78 warnings
+    Info: Peak virtual memory: 645 megabytes
+    Info: Processing ended: Wed Jul 19 09:28:23 2017
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:23
+
+
